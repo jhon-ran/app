@@ -1,3 +1,8 @@
+<?php
+//url de base en localhost para concatenar en la navbar para evitar errores de redirección
+$url_base = "http://localhost/app/"
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -30,7 +35,7 @@
                     >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Empleados</a>
+                    <a class="nav-link" href="<?php echo $url_base;?>secciones/empleados/">Empleados</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Puestos</a>
