@@ -2,8 +2,13 @@
 <?php include("../../templates/header.php"); ?>
 
 <br/>
+
 <div class="card">
-    <div class="card-header">Empleados </div>
+    <div class="card-header">
+        
+        <a name="" id="" class="btn btn-primary" href="crear.php" role="button" >Agregar registro</a>
+        
+    </div>
     <div class="card-body">
     
      <div
@@ -29,7 +34,11 @@
                     <td>cv.pdf</td>
                     <td>Becario</td>
                     <td>06/01/2023</td>
-                    <td>Carta|Editar|Eliminar</td>
+                    <td>
+                        <a name="" id="" class="btn btn-primary" href="#" role="button">Carta</a>
+                        |<a name="" id="" class="btn btn-info" href="#" role="button">Editar</a>
+                        |<a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
