@@ -1,3 +1,15 @@
+<!-- Importar conexión a BD-->
+<?php include("../../bd.php"); 
+//******Inicia código para mostrar todos los registros******
+//Se prepara sentencia para seleccionar todos los datos 
+$sentencia = $conexion->prepare("SELECT * FROM tbl_usuarios");
+$sentencia->execute();
+$lista_tbl_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+//Para probar que se esté leyendo todos los datos de la tabla, descomentar
+//print_r($lista_tbl_puestos);
+//******Termina código para mostrar todos los registros******
+
+?>
 <!-- ../../ sube 2 niveles para poder acceder al folder de templates-->
 <?php include("../../templates/header.php"); ?>
 
@@ -20,17 +32,24 @@
                 </tr>
             </thead>
             <tbody>
+
+            <?php foreach($lista_tbl_usuarios as $registro){ ?>
+
                 <tr class="">
-                    <td scope="row">1</td>
-                    <td>Pedro Páramo</td>
+                    <td scope="row"><?php echo $registro['id']?></td>
+                    <td><?php echo $registro['usuario']?></td>
                     <td>******</td>
-                    <td>pparamo@comala.com</td>
+                    <td><?php echo $registro['correo']?></td>
                     <td>
-                        <input name="btneditar" id="btneditar" class="btn btn-info" type="button" value="Editar"/>
-                        |
-                        <input name="btnborrar" id="btnborrar" class="btn btn-danger" type="button" value="Eliminar"/>
+                        <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['id']?>" role="button">Editar</a>
+                            | 
+                        <!--Envia el id através de la url-->
+                        <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['id']?>" role="button">Eliminar</a>
                      </td>
                 </tr>
+
+            <?php }?>
+
             </tbody>
         </table>
     </div>
