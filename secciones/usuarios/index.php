@@ -6,7 +6,7 @@ $sentencia = $conexion->prepare("SELECT * FROM tbl_usuarios");
 $sentencia->execute();
 $lista_tbl_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 //Para probar que se esté leyendo todos los datos de la tabla, descomentar
-//print_r($lista_tbl_puestos);
+//print_r($lista_tbl_usuarios);
 //******Termina código para mostrar todos los registros******
 
 ?>
