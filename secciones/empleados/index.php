@@ -4,6 +4,7 @@
 //******Inicia código para mostrar todos los registros******
 /*Se prepara sentencia para seleccionar todos los datos 
 En la sentencia se hace una subconsulta porque el idpuesto es índice & está ligado a la tabla puesto
+el resultado de la subconsulta se guarda como el alias "puesto" y este es el que llama en la tabla
 */
 $sentencia = $conexion->prepare("SELECT *,
 
