@@ -30,8 +30,34 @@ if($_POST){
     $sentencia->bindParam(":primerapellido",$primerapellido);
     $sentencia->bindParam(":segundoapellido",$segundoapellido);
 
-    $sentencia->bindParam(":foto",$foto);
-    $sentencia->bindParam(":cv",$cv);
+    //******Inicia código para adjuntar foto******
+    //Obtenemos tiempo
+    $fecha_ = new DateTime();
+    //Crear nuevo nombre de archivo: Si $foto tiene un valor,se crea el nombre con time stamp y el valor de nombre de foto, si no queda vacio
+    $nombreArchivo_foto = ($foto!='')?$fecha_->getTimestamp()."_".$_FILES["foto"]['name']:"";
+    //Variable temp para guardar nombre de foto
+    $tmp_foto = $_FILES["foto"]['tmp_name'];
+    //Si el archivo tmp no está vacio
+    if($tmp_foto!=''){
+        //Movemos el archivo en direccion predeterminada
+        move_uploaded_file($tmp_foto,"./".$nombreArchivo_foto);
+    }
+    //Se actualiza en BD el nombre de archivo
+    $sentencia->bindParam(":foto",$nombreArchivo_foto);
+    //******Termina código para adjuntar foto******
+
+    //******Inicia código para adjuntar pdf******
+    $nombreArchivo_cv = ($cv!='')?$fecha_->getTimestamp()."_".$_FILES["cv"]['name']:"";
+    //Variable temp para guardar nombre de foto
+    $tmp_cv = $_FILES["cv"]['tmp_name'];
+    //Si el archivo tmp no está vacio
+    if($tmp_cv!=''){
+        //Movemos el archivo en direccion predeterminada
+        move_uploaded_file($tmp_cv,"./".$nombreArchivo_cv);
+    }
+
+    $sentencia->bindParam(":cv",$nombreArchivo_cv);
+    //******Termina código para adjuntar foto******
 
     $sentencia->bindParam(":idpuesto",$idpuesto);
     $sentencia->bindParam(":fechadeingreso",$fechadeingreso);
